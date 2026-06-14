@@ -1,0 +1,2374 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GASPOL | Guna Arang Silvestris Penumpas Odor Lokal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                black: "#000000",
+                dark: "#222222",
+                mint: "#1DCD9F",
+                mintdark: "#169977",
+              },
+            },
+            animation: {
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+              "marquee-left": "marqueeLeft 60s linear infinite",
+              "marquee-right": "marqueeRight 60s linear infinite",
+            },
+            keyframes: {
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              marqueeLeft: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(-50%)" },
+              },
+              marqueeRight: {
+                "0%": { transform: "translateX(-50%)" },
+                "100%": { transform: "translateX(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom Styles for styling scrollbar and elements not handled by Tailwind */
+      body {
+        background-color: #000000;
+        color: #f3f4f6;
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #222222;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #169977;
+      }
+
+      .glass-nav {
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(34, 34, 34, 0.8);
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #1dcd9f 0%, #169977 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px -10px rgba(29, 205, 159, 0.3);
+        border-color: #1dcd9f;
+      }
+
+      /* Hero Text Reveal Animation */
+      .text-reveal-wrapper {
+        display: inline-flex;
+        overflow: hidden;
+        vertical-align: bottom;
+        padding-bottom: 0.1em;
+        margin-bottom: -0.1em;
+      }
+      .text-reveal-inner {
+        transform: translateY(110%);
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .hero-loaded .text-reveal-inner {
+        transform: translateY(0);
+      }
+
+      .hero-fade-in {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 1s ease,
+          transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .hero-loaded .hero-fade-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transition:
+          opacity 1s ease,
+          transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translate(0) scale(1);
+      }
+      .reveal-up {
+        transform: translateY(60px);
+      }
+      .reveal-left {
+        transform: translateX(-50px);
+      }
+      .reveal-right {
+        transform: translateX(50px);
+      }
+      .reveal-scale {
+        transform: scale(0.9);
+      }
+
+      /* Delays for staggered elements */
+      .delay-100 {
+        transition-delay: 100ms;
+      }
+      .delay-200 {
+        transition-delay: 200ms;
+      }
+      .delay-300 {
+        transition-delay: 300ms;
+      }
+      .delay-400 {
+        transition-delay: 400ms;
+      }
+      .delay-500 {
+        transition-delay: 500ms;
+      }
+
+      /* Testimonial Marquee Styles */
+      .marquee-row {
+        display: flex;
+        width: max-content;
+      }
+      .marquee-row-left {
+        animation: marqueeLeft 60s linear infinite;
+      }
+      .marquee-row-right {
+        animation: marqueeRight 60s linear infinite;
+      }
+      .marquee-track:hover .marquee-row {
+        animation-play-state: paused;
+      }
+      .testimonial-card {
+        width: 380px;
+        flex-shrink: 0;
+        margin: 0 12px;
+        background: rgba(34, 34, 34, 0.5);
+        border: 1px solid rgba(55, 55, 55, 0.6);
+        border-radius: 1.25rem;
+        padding: 1.75rem;
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .testimonial-card:hover {
+        border-color: rgba(29, 205, 159, 0.4);
+        box-shadow: 0 0 25px rgba(29, 205, 159, 0.08);
+      }
+      .testimonial-stars {
+        display: flex;
+        gap: 3px;
+        color: #1dcd9f;
+        font-size: 0.875rem;
+      }
+      .stat-progress {
+        width: 92.3%;
+      }
+      .stat-progress-animate {
+        transform: scaleX(0);
+        opacity: 0;
+        transform-origin: left center;
+      }
+      .stat-counter {
+        font-variant-numeric: tabular-nums;
+      }
+      @keyframes marqueeLeft {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      @keyframes marqueeRight {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      @keyframes statReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(24px) scale(0.97);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes statProgress {
+        0% {
+          transform: scaleX(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+      }
+      .reveal.active .stat-progress-animate {
+        animation: statProgress 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+      }
+    </style>
+  </head>
+  <body
+    class="antialiased selection:bg-brand-mint selection:text-brand-black overflow-x-hidden"
+  >
+    <nav
+      class="fixed w-full z-50 glass-nav transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <div
+            class="flex-shrink-0 flex items-center cursor-pointer"
+            onclick="window.scrollTo(0, 0)"
+          >
+            <img
+              src="G_20260609_200923_0000.png"
+              alt="Gaspol Logo"
+              class="h-36 w-auto object-contain drop-shadow-[0_0_8px_rgba(29,205,159,0.3)]"
+            />
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#penelitian"
+              class="text-gray-300 hover:text-brand-mint transition-colors text-sm font-medium"
+              >Penelitian</a
+            >
+            <a
+              href="#keunggulan"
+              class="text-gray-300 hover:text-brand-mint transition-colors text-sm font-medium"
+              >Keunggulan</a
+            >
+            <a
+              href="#portofolio"
+              class="text-gray-300 hover:text-brand-mint transition-colors text-sm font-medium"
+              >Portofolio</a
+            >
+            <a
+              href="#testimoni"
+              class="text-gray-300 hover:text-brand-mint transition-colors text-sm font-medium"
+              >Testimoni</a
+            >
+            <a
+              href="#tim"
+              class="text-gray-300 hover:text-brand-mint transition-colors text-sm font-medium"
+              >Tim Kami</a
+            >
+            <a
+              href="#cta"
+              class="bg-brand-mint hover:bg-brand-mintdark text-brand-black px-5 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-[0_0_15px_rgba(29,205,159,0.4)] hover:shadow-[0_0_25px_rgba(29,205,159,0.6)] text-sm flex items-center gap-2"
+            >
+              <i class="ph-bold ph-whatsapp-logo text-lg"></i>
+              Hubungi Kami
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-btn"
+              class="text-gray-300 hover:text-white focus:outline-none"
+            >
+              <i class="ph ph-list text-3xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-brand-dark border-t border-gray-800"
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a
+            href="#penelitian"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-mint hover:bg-brand-black"
+            >Penelitian</a
+          >
+          <a
+            href="#keunggulan"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-mint hover:bg-brand-black"
+            >Keunggulan</a
+          >
+          <a
+            href="#portofolio"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-mint hover:bg-brand-black"
+            >Portofolio</a
+          >
+          <a
+            href="#testimoni"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-mint hover:bg-brand-black"
+            >Testimoni</a
+          >
+          <a
+            href="#tim"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-mint hover:bg-brand-black"
+            >Tim Kami</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <section
+      id="hero"
+      class="relative pt-28 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-brand-black"
+    >
+      <!-- Interactive Canvas Background -->
+      <canvas id="heroCanvas" class="absolute inset-0 z-0 opacity-80"></canvas>
+
+      <!-- Background Elements (Parallax) -->
+      <div
+        class="absolute top-1/4 -left-64 w-96 h-96 bg-brand-mint rounded-full mix-blend-multiply filter blur-[128px] opacity-20 transition-transform duration-1000 ease-out"
+        id="blob1"
+      ></div>
+      <div
+        class="absolute bottom-1/4 -right-64 w-96 h-96 bg-brand-mintdark rounded-full mix-blend-multiply filter blur-[128px] opacity-20 transition-transform duration-1000 ease-out"
+        id="blob2"
+      ></div>
+
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pointer-events-none"
+      >
+        <div
+          class="lg:grid lg:grid-cols-12 lg:gap-16 items-center pointer-events-auto"
+        >
+          <div class="lg:col-span-6 text-center lg:text-left">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-dark border border-gray-800 mb-5 hero-fade-in"
+              style="transition-delay: 0.1s"
+            >
+              <span
+                class="flex w-2 h-2 rounded-full bg-brand-mint animate-pulse"
+              ></span>
+              <span
+                class="text-xs font-medium text-gray-300 tracking-wide uppercase"
+                >Inovasi Ramah Lingkungan</span
+              >
+            </div>
+            <h1
+              class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-5 text-white leading-tight"
+            >
+              <span class="text-reveal-wrapper"
+                ><span class="text-reveal-inner" style="transition-delay: 0.1s"
+                  >Langkah</span
+                ></span
+              >
+              <span class="text-reveal-wrapper"
+                ><span class="text-reveal-inner" style="transition-delay: 0.2s"
+                  >Segar</span
+                ></span
+              >
+              <br class="hidden sm:block" />
+              <span class="text-reveal-wrapper"
+                ><span class="text-reveal-inner" style="transition-delay: 0.3s"
+                  >dengan</span
+                ></span
+              >
+              <span class="text-reveal-wrapper"
+                ><span
+                  class="text-reveal-inner gradient-text"
+                  style="transition-delay: 0.4s"
+                  >Kekuatan</span
+                ></span
+              >
+              <span class="text-reveal-wrapper"
+                ><span
+                  class="text-reveal-inner gradient-text"
+                  style="transition-delay: 0.5s"
+                  >Alam</span
+                ></span
+              >
+            </h1>
+            <p
+              class="text-lg text-gray-400 mb-7 max-w-2xl mx-auto lg:mx-0 leading-relaxed hero-fade-in"
+              style="transition-delay: 0.6s"
+            >
+              Sinergi sempurna antara karbon aktif dari arang pinus dan
+              kesegaran antibakteri daun mint. Solusi organik terbaik untuk
+              menghilangkan bau tak sedap dan bakteri pada sepatu Anda.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start hero-fade-in"
+              style="transition-delay: 0.8s"
+            >
+              <a
+                href="#penelitian"
+                class="bg-brand-mint hover:bg-brand-mintdark text-brand-black px-8 py-3.5 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(29,205,159,0.3)] hover:shadow-[0_0_30px_rgba(29,205,159,0.5)] flex items-center justify-center gap-2 hover:-translate-y-1"
+              >
+                Pelajari Project
+                <i class="ph-bold ph-arrow-right"></i>
+              </a>
+              <a
+                href="#portofolio"
+                class="bg-transparent border-2 border-brand-dark hover:border-gray-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all flex items-center justify-center hover:-translate-y-1"
+              >
+                Lihat Portofolio
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="lg:col-span-6 mt-12 lg:mt-0 relative hidden md:block hero-fade-in"
+            style="transition-delay: 1s"
+          >
+            <!-- Abstract Image/Graphic Representation -->
+            <div
+              class="relative w-full aspect-square rounded-full border border-gray-800 bg-brand-dark/50 flex items-center justify-center p-8 backdrop-blur-sm"
+            >
+              <!-- Orbit circles -->
+              <div
+                class="absolute inset-4 rounded-full border border-gray-800/80 border-dashed animate-[spin_60s_linear_infinite]"
+              ></div>
+              <div
+                class="absolute inset-16 rounded-full border border-brand-mint/20 animate-[spin_40s_linear_infinite_reverse]"
+              ></div>
+
+              <!-- Center Element -->
+              <div
+                class="relative z-10 w-48 h-48 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center shadow-[0_0_50px_rgba(29,205,159,0.4)]"
+              >
+                <i class="ph-fill ph-sneaker text-brand-black text-6xl"></i>
+              </div>
+
+              <!-- Floating Elements -->
+              <div
+                class="absolute top-1/4 right-1/4 bg-brand-dark border border-gray-700 p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce"
+                style="animation-duration: 3s"
+              >
+                <i class="ph-fill ph-leaf text-brand-mint text-xl"></i>
+                <span class="text-sm font-semibold">Mint Extract</span>
+              </div>
+              <div
+                class="absolute top-1/2 left-5 -translate-y-1/2 bg-brand-dark border border-gray-700 p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce"
+                style="animation-duration: 3.4s; animation-delay: 0.35s"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="h-7 w-7 shrink-0 fill-none stroke-yellow-300 stroke-[1.9]"
+                >
+                  <path
+                    d="M16.5 6.5c-1.6-1.6-3.9-2.2-6.1-1.6C6.9 5.7 5 8 5 10.9c0 2.2 1 4.3 2.8 5.8 1.8 1.5 4.2 2.1 6.5 1.6 2.6-.6 4.5-2.8 4.8-5.3.3-2.2-.4-4.3-2.1-5.9z"
+                  />
+                  <path d="M9 8.5c1.3-1 2.8-1.5 4.3-1.4" />
+                  <path d="M13.2 6.8c.5-.8 1.2-1.4 2.1-1.8" />
+                  <path d="M14.7 12.2c-1.4 1.2-3.1 1.8-4.9 1.8" />
+                  <path d="M8.4 14.8c-.8.8-1.3 1.8-1.5 2.8" />
+                </svg>
+                <span class="text-sm font-semibold">Ekstrak Lemon</span>
+              </div>
+              <div
+                class="absolute bottom-1/4 right-10 bg-brand-dark border border-gray-700 p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce"
+                style="animation-duration: 4s; animation-delay: 1s"
+              >
+                <i
+                  class="ph-fill ph-tree-evergreen text-brand-mint text-xl"
+                ></i>
+                <span class="text-sm font-semibold">Pine Carbon</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="statistik"
+      class="reveal reveal-up relative z-20 -mt-6 md:-mt-10 -mb-6 md:-mb-10 px-4 sm:px-6 lg:px-8 pb-0"
+    >
+      <div class="max-w-5xl mx-auto">
+        <div
+          class="relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-gradient-to-br from-brand-dark/95 via-brand-black/90 to-brand-dark/80 shadow-[0_16px_45px_-24px_rgba(0,0,0,0.82)] backdrop-blur-xl"
+        >
+          <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(29,205,159,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(22,153,119,0.12),transparent_30%)]"
+          ></div>
+          <div
+            class="absolute -top-24 -right-24 w-56 h-56 rounded-full bg-brand-mint/15 blur-[110px]"
+          ></div>
+          <div
+            class="absolute -bottom-24 -left-24 w-56 h-56 rounded-full bg-brand-mintdark/15 blur-[110px]"
+          ></div>
+
+          <div class="relative p-4 sm:p-5 md:px-7 md:py-6">
+            <div class="max-w-none space-y-3">
+              <div
+                class="inline-flex items-center gap-2 rounded-full border border-brand-mint/20 bg-brand-mint/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.24em] text-brand-mint"
+              >
+                Temuan Responden
+              </div>
+              <div
+                class="flex flex-col gap-3 md:flex-row md:items-end md:gap-4"
+              >
+                <div class="flex items-end gap-2.5 shrink-0">
+                  <span
+                    id="stat-counter"
+                    data-target="92.3"
+                    data-decimals="1"
+                    class="stat-counter text-3xl sm:text-4xl lg:text-5xl font-black leading-none text-white drop-shadow-[0_0_18px_rgba(29,205,159,0.25)]"
+                    >0%</span
+                  >
+                </div>
+                <span
+                  class="text-xs sm:text-sm md:text-base font-medium text-gray-300 leading-relaxed max-w-3xl"
+                  >Sebagian besar responden mengonfirmasi bahwa sepatu mereka
+                  sering mengalami bau apek atau kelembapan. GASPOL hadir untuk
+                  membantu mengatasinya dengan kombinasi bahan alami dan karbon
+                  aktif pinus.</span
+                >
+              </div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <div
+                  class="h-1.5 w-full max-w-md rounded-full bg-white/10 overflow-hidden"
+                >
+                  <div
+                    class="h-full stat-progress stat-progress-animate rounded-full bg-gradient-to-r from-brand-mint via-emerald-300 to-brand-mintdark"
+                  ></div>
+                </div>
+                <div
+                  class="shrink-0 rounded-full border border-brand-mint/20 bg-brand-mint/10 px-2.5 py-1 text-[10px] font-semibold text-brand-mint"
+                >
+                  Hasil survei
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="penelitian"
+      class="py-20 bg-brand-dark/30 border-y border-brand-dark overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal reveal-up">
+          <h2
+            class="text-brand-mint font-semibold tracking-wide uppercase text-sm mb-2"
+          >
+            Latar Belakang
+          </h2>
+          <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            Mengapa Arang Pinus, Mint & Lemon?
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            Aktivitas harian memicu kelembapan dan pertumbuhan bakteri penyebab
+            bau pada sepatu. Di sisi lain, limbah kayu pohon pinus di Bojong
+            sangat melimpah namun belum dimanfaatkan secara optimal. GASPOL
+            hadir mengolah limbah pinus lokal menjadi deodorizer alami yang
+            efektif menyerap bau, menjaga kelembapan, dan bernilai ekonomis.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8">
+          <!-- Card 1 -->
+          <div
+            class="bg-brand-black border border-brand-dark rounded-3xl p-8 card-hover relative overflow-hidden reveal reveal-left delay-200"
+          >
+            <div class="absolute top-0 right-0 p-6 opacity-5">
+              <i class="ph-fill ph-tree-evergreen text-9xl"></i>
+            </div>
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-mint/20 to-brand-mintdark/10 flex items-center justify-center mb-6 border border-brand-mint/20"
+            >
+              <i
+                class="ph-duotone ph-tree-evergreen text-brand-mint text-3xl"
+              ></i>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-4">
+              Arang Pinus (Karbon Aktif)
+            </h4>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Arang pinus memiliki struktur mikropori yang sangat padat. Saat
+              diproses menjadi karbon aktif, luas permukaannya meningkat
+              drastis. Ini memungkinkannya bekerja seperti spons mikro yang:
+            </p>
+            <ul class="space-y-3 mt-6">
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-drop text-brand-mint mt-0.5"></i>
+                <span class="text-gray-300 text-sm"
+                  >Menyerap kelembaban/keringat berlebih.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-wind text-brand-mint mt-0.5"></i>
+                <span class="text-gray-300 text-sm"
+                  >Mengikat partikel gas penyebab bau menyengat.</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="bg-brand-black border border-brand-dark rounded-3xl p-8 card-hover relative overflow-hidden reveal reveal-right delay-400"
+          >
+            <div class="absolute top-0 right-0 p-6 opacity-5">
+              <i class="ph-fill ph-leaf text-9xl"></i>
+            </div>
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-mint/20 to-brand-mintdark/10 flex items-center justify-center mb-6 border border-brand-mint/20"
+            >
+              <i class="ph-duotone ph-leaf text-brand-mint text-3xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-4">Ekstrak Daun Mint</h4>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Mint bukan sekadar pemberi aroma wangi. Minyak esensial dalam daun
+              mint mengandung menthol dan senyawa fenolik yang berperan penting
+              sebagai agen pelindung aktif yang:
+            </p>
+            <ul class="space-y-3 mt-6">
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-shield-check text-brand-mint mt-0.5"></i>
+                <span class="text-gray-300 text-sm"
+                  >Membunuh bakteri penyebab bau (antibakteri).</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-sparkle text-brand-mint mt-0.5"></i>
+                <span class="text-gray-300 text-sm"
+                  >Memberikan aroma kesegaran tahan lama (deodorizing).</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="bg-brand-black border border-brand-dark rounded-3xl p-8 card-hover relative overflow-hidden reveal reveal-up delay-500 md:col-span-2 lg:col-span-1"
+          >
+            <div class="absolute top-0 right-0 p-6 opacity-5">
+              <i class="ph-fill ph-flask text-9xl"></i>
+            </div>
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-mint/20 to-brand-mintdark/10 flex items-center justify-center mb-6 border border-brand-mint/20"
+            >
+              <i
+                class="ph-duotone ph-orange-slice text-brand-mint text-3xl"
+              ></i>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-4">Ekstrak Lemon</h4>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Lemon mengandung asam sitrat dan minyak atsiri limonene yang
+              memiliki sifat antimikroba kuat. Sebagai komponen pelengkap dalam
+              formulasi GASPOL, ekstrak lemon berperan untuk:
+            </p>
+            <ul class="space-y-3 mt-6">
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-atom text-brand-mint mt-0.5"></i>
+                <span class="text-gray-300 text-sm"
+                  >Menetralisir bau dengan asam sitrat alami (pH rendah).</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-shield-plus text-brand-mint mt-0.5"></i>
+                <span class="text-gray-300 text-sm"
+                  >Menghambat pertumbuhan jamur dan bakteri secara
+                  efektif.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-sun text-brand-mint mt-0.5"></i>
+                <span class="text-gray-300 text-sm"
+                  >Memberikan aroma citrus segar yang memperkuat efek
+                  deodorizing.</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="keunggulan" class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal reveal-up">
+          <h2
+            class="text-brand-mint font-semibold tracking-wide uppercase text-sm mb-2"
+          >
+            Nilai Tambah
+          </h2>
+          <h3 class="text-3xl md:text-4xl font-bold text-white">
+            Keunggulan Inovasi Kami
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Feature 1 -->
+          <div
+            class="bg-brand-dark/50 border border-gray-800 rounded-2xl p-6 text-center card-hover reveal reveal-scale delay-100"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-black rounded-full flex items-center justify-center mb-4 border border-brand-mint/30 shadow-[0_0_15px_rgba(29,205,159,0.1)]"
+            >
+              <i class="ph ph-plant text-brand-mint text-2xl"></i>
+            </div>
+            <h4 class="text-white font-semibold mb-2">100% Organik</h4>
+            <p class="text-gray-400 text-sm">
+              Menggunakan bahan-bahan alami sehingga lebih aman digunakan dan
+              memanfaatkan sumber daya yang tersedia di sekitar.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            class="bg-brand-dark/50 border border-gray-800 rounded-2xl p-6 text-center card-hover reveal reveal-scale delay-200"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-black rounded-full flex items-center justify-center mb-4 border border-brand-mint/30 shadow-[0_0_15px_rgba(29,205,159,0.1)]"
+            >
+              <i class="ph ph-sparkle text-brand-mint text-2xl"></i>
+            </div>
+            <h4 class="text-white font-semibold mb-2">Aroma Segar</h4>
+            <p class="text-gray-400 text-sm">
+              Menghasilkan wangi mint dan lemon yang membantu memberikan kesan
+              bersih serta mengurangi bau tidak sedap pada sepatu.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            class="bg-brand-dark/50 border border-gray-800 rounded-2xl p-6 text-center card-hover reveal reveal-scale delay-300"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-black rounded-full flex items-center justify-center mb-4 border border-brand-mint/30 shadow-[0_0_15px_rgba(29,205,159,0.1)]"
+            >
+              <i class="ph ph-coins text-brand-mint text-2xl"></i>
+            </div>
+            <h4 class="text-white font-semibold mb-2">Ekonomis</h4>
+            <p class="text-gray-400 text-sm">
+              Dibuat dengan biaya yang relatif terjangkau sehingga dapat menjadi
+              alternatif penghilang bau sepatu yang hemat.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div
+            class="bg-brand-dark/50 border border-gray-800 rounded-2xl p-6 text-center card-hover reveal reveal-scale delay-400"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-brand-black rounded-full flex items-center justify-center mb-4 border border-brand-mint/30 shadow-[0_0_15px_rgba(29,205,159,0.1)]"
+            >
+              <i class="ph ph-recycle text-brand-mint text-2xl"></i>
+            </div>
+            <h4 class="text-white font-semibold mb-2">Eco-Friendly</h4>
+            <p class="text-gray-400 text-sm">
+              Memanfaatkan bahan alami dan mengurangi penggunaan bahan kimia
+              sintetis, sehingga lebih mendukung kelestarian lingkungan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="portofolio"
+      class="py-24 bg-brand-dark/30 border-y border-brand-dark overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-12 reveal reveal-up"
+        >
+          <div class="max-w-2xl">
+            <h2
+              class="text-brand-mint font-semibold tracking-wide uppercase text-sm mb-2"
+            >
+              Eksplorasi Kami
+            </h2>
+            <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Galeri & Portofolio
+            </h3>
+            <p class="text-gray-400">
+              Beberapa purwarupa dan dokumentasi dari proses riset pembuatan
+              produk penghilang bau berbasis arang pinus dan mint.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Portfolio Item 1 -->
+          <div
+            class="group relative rounded-2xl overflow-hidden bg-brand-black border border-gray-800 reveal reveal-up delay-100"
+          >
+            <div class="aspect-w-16 aspect-h-12 bg-gray-900 relative">
+              <!-- Placeholder Image using Unsplash styling concepts -->
+              <img
+                src="https://images.unsplash.com/photo-1628151015968-3a4429e9ef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Bahan Baku Arang Pinus"
+                class="object-cover w-full h-64 opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 transform"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
+              ></div>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full p-6">
+              <span
+                class="inline-block px-3 py-1 bg-brand-mint/20 text-brand-mint text-xs font-semibold rounded-full mb-3 backdrop-blur-sm border border-brand-mint/30"
+                >Proses Riset</span
+              >
+              <h4 class="text-xl font-bold text-white mb-1">
+                Karbonisasi Pinus
+              </h4>
+              <p
+                class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0"
+              >
+                Proses pembakaran kayu pinus dengan suhu terkontrol untuk
+                menghasilkan arang berkualitas tinggi.
+              </p>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 2 -->
+          <div
+            class="group relative rounded-2xl overflow-hidden bg-brand-black border border-gray-800 reveal reveal-up delay-300"
+          >
+            <div class="aspect-w-16 aspect-h-12 bg-gray-900 relative">
+              <img
+                src="https://images.unsplash.com/photo-1626015469502-3023eec7e8be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Ekstrak Daun Mint"
+                class="object-cover w-full h-64 opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 transform"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
+              ></div>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full p-6">
+              <span
+                class="inline-block px-3 py-1 bg-brand-mint/20 text-brand-mint text-xs font-semibold rounded-full mb-3 backdrop-blur-sm border border-brand-mint/30"
+                >Ekstraksi Alami</span
+              >
+              <h4 class="text-xl font-bold text-white mb-1">
+                Esensi Daun Mint
+              </h4>
+              <p
+                class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0"
+              >
+                Penyulingan daun mint segar untuk mendapatkan minyak atsiri
+                murni sebagai agen antibakteri utama.
+              </p>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 3 -->
+          <div
+            class="group relative rounded-2xl overflow-hidden bg-brand-black border border-gray-800 reveal reveal-up delay-500"
+          >
+            <div class="aspect-w-16 aspect-h-12 bg-gray-900 relative">
+              <img
+                src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Prototipe Sachet"
+                class="object-cover w-full h-64 opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 transform"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
+              ></div>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full p-6">
+              <span
+                class="inline-block px-3 py-1 bg-brand-mint/20 text-brand-mint text-xs font-semibold rounded-full mb-3 backdrop-blur-sm border border-brand-mint/30"
+                >Produk Akhir</span
+              >
+              <h4 class="text-xl font-bold text-white mb-1">
+                Purwarupa Sachet
+              </h4>
+              <p
+                class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0"
+              >
+                Kombinasi granul arang pinus dan ekstrak mint yang dikemas dalam
+                sachet berpori siap pakai.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimoni" class="py-24 overflow-hidden relative">
+      <!-- Subtle background glow -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-mint rounded-full mix-blend-multiply filter blur-[200px] opacity-[0.04]"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16 reveal reveal-up">
+          <h2
+            class="text-brand-mint font-semibold tracking-wide uppercase text-sm mb-2"
+          >
+            Testimoni
+          </h2>
+          <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Apa Kata Mereka?
+          </h3>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Pendapat dari para pengguna dan rekan peneliti yang telah merasakan
+            langsung manfaat inovasi Gaspol.
+          </p>
+        </div>
+      </div>
+
+      <!-- Row 1: Scroll Left -->
+      <div class="marquee-track mb-6 reveal reveal-up delay-200">
+        <div class="marquee-row marquee-row-left">
+          <!-- Set A -->
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Rizki Aditya</h5>
+                <p class="text-gray-500 text-xs">Mahasiswa Teknik</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Sepatu olahraga saya sudah tidak bau lagi setelah pakai Gaspol
+              selama seminggu. Bahannya alami dan aman, sangat recommended untuk
+              mahasiswa yang aktif!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Dewi Lestari</h5>
+                <p class="text-gray-500 text-xs">Ibu Rumah Tangga</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Anak-anak saya suka bermain di luar, sepatu mereka selalu bau.
+              Gaspol benar-benar membantu! Wanginya lembut dan tidak bikin
+              alergi. Solusi terbaik untuk keluarga.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Prof. Hendra</h5>
+                <p class="text-gray-500 text-xs">Dosen Kimia</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Dari sisi ilmiah, kombinasi karbon aktif dan minyak atsiri mint
+              adalah pendekatan yang sangat cerdas. Efektivitasnya terbukti
+              melalui uji lab yang ketat dan terukur.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Maya Putri</h5>
+                <p class="text-gray-500 text-xs">Atlet Lari</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Sebagai atlet, sepatu saya cepat lembab dan bau. Gaspol menjadi
+              penyelamat! Tidak perlu semprot kimia lagi, cukup taruh sachet-nya
+              dan bau langsung hilang dalam semalam.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Fajar Nugroho</h5>
+                <p class="text-gray-500 text-xs">Pekerja Kantoran</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Setiap hari pakai sepatu formal ke kantor, sering kali malu karena
+              bau saat meeting. Setelah pakai Gaspol, masalah itu hilang. Produk
+              yang sangat praktis dan elegan.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Lina Marlina</h5>
+                <p class="text-gray-500 text-xs">Guru SMA</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Saya rekomendasikan ini ke murid-murid saya. Produk lokal, ramah
+              lingkungan, dan benar-benar efektif. Bangga ada inovasi seperti
+              ini dari anak muda Indonesia!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <!-- Set B (Duplicate for seamless loop) -->
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Rizki Aditya</h5>
+                <p class="text-gray-500 text-xs">Mahasiswa Teknik</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Sepatu olahraga saya sudah tidak bau lagi setelah pakai Gaspol
+              selama seminggu. Bahannya alami dan aman, sangat recommended untuk
+              mahasiswa yang aktif!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Dewi Lestari</h5>
+                <p class="text-gray-500 text-xs">Ibu Rumah Tangga</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Anak-anak saya suka bermain di luar, sepatu mereka selalu bau.
+              Gaspol benar-benar membantu! Wanginya lembut dan tidak bikin
+              alergi. Solusi terbaik untuk keluarga.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Prof. Hendra</h5>
+                <p class="text-gray-500 text-xs">Dosen Kimia</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Dari sisi ilmiah, kombinasi karbon aktif dan minyak atsiri mint
+              adalah pendekatan yang sangat cerdas. Efektivitasnya terbukti
+              melalui uji lab yang ketat dan terukur.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Maya Putri</h5>
+                <p class="text-gray-500 text-xs">Atlet Lari</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Sebagai atlet, sepatu saya cepat lembab dan bau. Gaspol menjadi
+              penyelamat! Tidak perlu semprot kimia lagi, cukup taruh sachet-nya
+              dan bau langsung hilang dalam semalam.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Fajar Nugroho</h5>
+                <p class="text-gray-500 text-xs">Pekerja Kantoran</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Setiap hari pakai sepatu formal ke kantor, sering kali malu karena
+              bau saat meeting. Setelah pakai Gaspol, masalah itu hilang. Produk
+              yang sangat praktis dan elegan.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Lina Marlina</h5>
+                <p class="text-gray-500 text-xs">Guru SMA</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Saya rekomendasikan ini ke murid-murid saya. Produk lokal, ramah
+              lingkungan, dan benar-benar efektif. Bangga ada inovasi seperti
+              ini dari anak muda Indonesia!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Scroll Right -->
+      <div class="marquee-track reveal reveal-up delay-400">
+        <div class="marquee-row marquee-row-right">
+          <!-- Set A -->
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Arief Rahman</h5>
+                <p class="text-gray-500 text-xs">Sneaker Collector</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Koleksi sneaker saya ratusan pasang. Gaspol menjaga semuanya tetap
+              segar tanpa merusak material. Solusi cerdas yang sudah lama saya
+              cari untuk perawatan sneaker premium.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Sari Wulandari</h5>
+                <p class="text-gray-500 text-xs">Dokter Umum</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Dari perspektif medis, pendekatan antibakteri alami ini sangat
+              menarik. Mengurangi ketergantungan pada bahan kimia sintetis
+              sambil tetap efektif membunuh bakteri penyebab bau.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Tommy Wijaya</h5>
+                <p class="text-gray-500 text-xs">Pemilik Toko Sepatu</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Saya menjual Gaspol sebagai aksesoris tambahan di toko saya.
+              Pelanggan sangat puas dan banyak yang repeat order. Produk lokal
+              dengan kualitas internasional!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Nadia Safira</h5>
+                <p class="text-gray-500 text-xs">Content Creator</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Review produk ini di channel saya viral! Followers saya langsung
+              tertarik karena konsepnya unik dan packaging-nya aesthetic. Cocok
+              banget untuk konten sustainable living.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Bagus Setiawan</h5>
+                <p class="text-gray-500 text-xs">Pendaki Gunung</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Sepatu hiking saya selalu basah dan bau setelah pendakian. Gaspol
+              dengan arang pinusnya benar-benar menyerap kelembaban dengan luar
+              biasa. Wajib bawa setiap ekspedisi!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Ratna Kusuma</h5>
+                <p class="text-gray-500 text-xs">Aktivis Lingkungan</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Akhirnya ada produk perawatan sepatu yang benar-benar
+              eco-friendly! Memanfaatkan limbah pinus menjadi sesuatu yang
+              berguna, ini adalah contoh nyata circular economy.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <!-- Set B (Duplicate for seamless loop) -->
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Arief Rahman</h5>
+                <p class="text-gray-500 text-xs">Sneaker Collector</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Koleksi sneaker saya ratusan pasang. Gaspol menjaga semuanya tetap
+              segar tanpa merusak material. Solusi cerdas yang sudah lama saya
+              cari untuk perawatan sneaker premium.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Sari Wulandari</h5>
+                <p class="text-gray-500 text-xs">Dokter Umum</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Dari perspektif medis, pendekatan antibakteri alami ini sangat
+              menarik. Mengurangi ketergantungan pada bahan kimia sintetis
+              sambil tetap efektif membunuh bakteri penyebab bau.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Tommy Wijaya</h5>
+                <p class="text-gray-500 text-xs">Pemilik Toko Sepatu</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Saya menjual Gaspol sebagai aksesoris tambahan di toko saya.
+              Pelanggan sangat puas dan banyak yang repeat order. Produk lokal
+              dengan kualitas internasional!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Nadia Safira</h5>
+                <p class="text-gray-500 text-xs">Content Creator</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Review produk ini di channel saya viral! Followers saya langsung
+              tertarik karena konsepnya unik dan packaging-nya aesthetic. Cocok
+              banget untuk konten sustainable living.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Bagus Setiawan</h5>
+                <p class="text-gray-500 text-xs">Pendaki Gunung</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Sepatu hiking saya selalu basah dan bau setelah pendakian. Gaspol
+              dengan arang pinusnya benar-benar menyerap kelembaban dengan luar
+              biasa. Wajib bawa setiap ekspedisi!
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-mint to-brand-mintdark flex items-center justify-center flex-shrink-0"
+              >
+                <i class="ph-bold ph-user text-brand-black text-lg"></i>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold text-sm">Ratna Kusuma</h5>
+                <p class="text-gray-500 text-xs">Aktivis Lingkungan</p>
+              </div>
+            </div>
+            <div class="testimonial-stars mb-3">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i
+              ><i class="ph-fill ph-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Akhirnya ada produk perawatan sepatu yang benar-benar
+              eco-friendly! Memanfaatkan limbah pinus menjadi sesuatu yang
+              berguna, ini adalah contoh nyata circular economy.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-brand-mint/40">
+              <i class="ph-fill ph-quotes text-xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edge fade overlays -->
+      <div
+        class="absolute top-0 left-0 w-24 md:w-40 h-full bg-gradient-to-r from-brand-black to-transparent z-20 pointer-events-none"
+      ></div>
+      <div
+        class="absolute top-0 right-0 w-24 md:w-40 h-full bg-gradient-to-l from-brand-black to-transparent z-20 pointer-events-none"
+      ></div>
+    </section>
+
+    <section id="tim" class="py-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal reveal-up">
+          <h2
+            class="text-brand-mint font-semibold tracking-wide uppercase text-sm mb-2"
+          >
+            Di Balik Layar
+          </h2>
+          <h3 class="text-3xl md:text-4xl font-bold text-white">
+            Tim Peneliti Kami
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <!-- Team Member 1 -->
+          <div
+            class="bg-brand-dark/40 border border-gray-800 rounded-3xl p-8 text-center card-hover flex flex-col items-center reveal reveal-left delay-200"
+          >
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-brand-black shadow-[0_0_20px_rgba(29,205,159,0.2)]"
+            >
+              <!-- Placeholder Avatar -->
+              <img
+                src="https://i.pravatar.cc/150?img=11"
+                alt="Anggota Tim"
+                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+            <h4 class="text-xl font-bold text-white">Budi Santoso</h4>
+            <p class="text-brand-mint text-sm font-medium mb-4">
+              Ketua Peneliti
+            </p>
+            <p class="text-gray-400 text-sm">
+              Fokus pada formulasi rasio ideal antara karbon aktif pinus dan
+              minyak atsiri mint.
+            </p>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div
+            class="bg-brand-dark/40 border border-gray-800 rounded-3xl p-8 text-center card-hover flex flex-col items-center reveal reveal-up delay-100"
+          >
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-brand-black shadow-[0_0_20px_rgba(29,205,159,0.2)]"
+            >
+              <img
+                src="https://i.pravatar.cc/150?img=5"
+                alt="Anggota Tim"
+                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+            <h4 class="text-xl font-bold text-white">Siti Aminah</h4>
+            <p class="text-brand-mint text-sm font-medium mb-4">
+              Ahli Kimia Organik
+            </p>
+            <p class="text-gray-400 text-sm">
+              Bertanggung jawab dalam proses ekstraksi daun mint dan uji
+              mikrobiologi bakteri.
+            </p>
+          </div>
+
+          <!-- Team Member 3 -->
+          <div
+            class="bg-brand-dark/40 border border-gray-800 rounded-3xl p-8 text-center card-hover flex flex-col items-center reveal reveal-right delay-200"
+          >
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-brand-black shadow-[0_0_20px_rgba(29,205,159,0.2)]"
+            >
+              <img
+                src="https://i.pravatar.cc/150?img=12"
+                alt="Anggota Tim"
+                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+            <h4 class="text-xl font-bold text-white">Andi Pratama</h4>
+            <p class="text-brand-mint text-sm font-medium mb-4">
+              Desain Produk
+            </p>
+            <p class="text-gray-400 text-sm">
+              Merancang kemasan prototipe yang memaksimalkan sirkulasi udara
+              untuk penyerapan bau.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="py-20 relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-brand-mintdark/20 to-brand-mint/20"
+      ></div>
+      <div
+        class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal reveal-scale"
+      >
+        <div
+          class="bg-brand-dark border border-brand-mint/30 rounded-[2.5rem] p-10 md:p-16 text-center shadow-[0_0_50px_rgba(29,205,159,0.15)] relative overflow-hidden"
+        >
+          <!-- Decorative background patterns -->
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-brand-mint rounded-full mix-blend-multiply filter blur-[80px] opacity-20 transform translate-x-1/2 -translate-y-1/2"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-brand-mintdark rounded-full mix-blend-multiply filter blur-[80px] opacity-20 transform -translate-x-1/2 translate-y-1/2"
+          ></div>
+
+          <h2
+            class="text-3xl md:text-5xl font-extrabold text-white mb-6 relative z-10"
+          >
+            Siap Bebaskan Sepatumu dari Bau Tak Sedap?
+          </h2>
+          <p
+            class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto relative z-10"
+          >
+            Tertarik dengan project kami, ingin berkolaborasi, atau mencoba
+            langsung purwarupa produk Gaspol? Jangan ragu untuk menghubungi
+            kami.
+          </p>
+
+          <a
+            href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20inovasi%20Gaspol.%20Bisa%20info%20lebih%20lanjut?"
+            target="_blank"
+            class="inline-flex items-center justify-center gap-3 bg-brand-mint hover:bg-brand-mintdark text-brand-black px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_0_20px_rgba(29,205,159,0.4)] hover:shadow-[0_0_30px_rgba(29,205,159,0.6)] hover:-translate-y-1 relative z-10"
+          >
+            <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+            Chat via WhatsApp Sekarang
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-brand-black border-t border-gray-800 pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div class="md:col-span-2">
+            <div class="flex items-center mb-4">
+              <img
+                src="G_20260609_200923_0000.png"
+                alt="Gaspol Logo"
+                class="h-36 w-auto object-contain drop-shadow-[0_0_8px_rgba(29,205,159,0.3)]"
+              />
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6">
+              Inovasi ramah lingkungan yang mengkombinasikan arang kayu pinus
+              dan esensi daun mint untuk menciptakan solusi alami, efektif, dan
+              aman bagi masalah bau sepatu.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-gray-400 hover:text-brand-mint hover:bg-gray-800 transition-colors"
+              >
+                <i class="ph-fill ph-instagram-logo text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-gray-400 hover:text-brand-mint hover:bg-gray-800 transition-colors"
+              >
+                <i class="ph-fill ph-twitter-logo text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-gray-400 hover:text-brand-mint hover:bg-gray-800 transition-colors"
+              >
+                <i class="ph-fill ph-envelope-simple text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-white font-semibold mb-4">Tautan Navigasi</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#penelitian"
+                  class="text-gray-400 hover:text-brand-mint text-sm transition-colors"
+                  >Penelitian</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#keunggulan"
+                  class="text-gray-400 hover:text-brand-mint text-sm transition-colors"
+                  >Keunggulan</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#portofolio"
+                  class="text-gray-400 hover:text-brand-mint text-sm transition-colors"
+                  >Portofolio</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tim"
+                  class="text-gray-400 hover:text-brand-mint text-sm transition-colors"
+                  >Tim Peneliti</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-semibold mb-4">Kontak Info</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-map-pin text-brand-mint mt-1"></i>
+                <span class="text-gray-400 text-sm"
+                  >Gedung Laboratorium Sains Terpadu, Jl. Pendidikan No. 1</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="ph-fill ph-envelope text-brand-mint"></i>
+                <span class="text-gray-400 text-sm">halo@gaspol.com</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="ph-fill ph-phone text-brand-mint"></i>
+                <span class="text-gray-400 text-sm">+62 812 3456 7890</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-gray-500 text-sm text-center md:text-left">
+            &copy; <span id="year"></span> Gaspol Research Project. All rights
+            reserved.
+          </p>
+          <div class="flex space-x-6 text-sm text-gray-500">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts for Interactivity -->
+    <script>
+      // Update Copyright Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Mobile Menu Toggle
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu on click
+      const mobileLinks = menu.querySelectorAll("a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+        });
+      });
+
+      // Navbar blur effect on scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("shadow-lg");
+          navbar.style.background = "rgba(0, 0, 0, 0.85)";
+        } else {
+          navbar.classList.remove("shadow-lg");
+          navbar.style.background = "rgba(0, 0, 0, 0.7)";
+        }
+      });
+
+      // --- NEW: Hero Text Reveal Initialization ---
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("hero").classList.add("hero-loaded");
+        }, 100);
+      });
+
+      // --- NEW: Scroll Reveal Observer (Intersection Observer) ---
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const revealObserver = new IntersectionObserver(function (
+        entries,
+        observer,
+      ) {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          entry.target.classList.add("active");
+          if (entry.target.id === "statistik") {
+            const counter = document.getElementById("stat-counter");
+            if (counter && !counter.dataset.countStarted) {
+              counter.dataset.countStarted = "true";
+
+              const targetValue = parseFloat(counter.dataset.target || "92.3");
+              const decimals = parseInt(counter.dataset.decimals || "1", 10);
+              const duration = 1400;
+              const startTime = performance.now();
+
+              const animateCounter = (currentTime) => {
+                const progress = Math.min(
+                  (currentTime - startTime) / duration,
+                  1,
+                );
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const currentValue = targetValue * eased;
+                counter.textContent = `${currentValue.toFixed(decimals)}%`;
+
+                if (progress < 1) {
+                  requestAnimationFrame(animateCounter);
+                } else {
+                  counter.textContent = `${targetValue.toFixed(decimals)}%`;
+                }
+              };
+
+              requestAnimationFrame(animateCounter);
+            }
+          }
+          observer.unobserve(entry.target); // Stop observing once revealed
+        });
+      }, revealOptions);
+
+      revealElements.forEach((el) => {
+        revealObserver.observe(el);
+      });
+
+      // --- Antigravity-Inspired Interactive Particle System (Mint & Pine Theme) ---
+      const canvas = document.getElementById("heroCanvas");
+      const ctx = canvas.getContext("2d");
+      const heroSection = document.getElementById("hero");
+
+      let w, h;
+      let animFrameId;
+
+      // Particle pools
+      let trailParticles = []; // Emitted from cursor
+      let ambientParticles = []; // Floating background particles
+
+      // Mouse state with velocity tracking
+      const mouse = {
+        x: undefined,
+        y: undefined,
+        prevX: undefined,
+        prevY: undefined,
+        vx: 0,
+        vy: 0,
+        active: false,
+        radius: 200,
+      };
+
+      // Color palette — mint & pine
+      const COLORS = [
+        { r: 29, g: 205, b: 159 }, // #1DCD9F mint
+        { r: 22, g: 153, b: 119 }, // #169977 mint dark
+        { r: 45, g: 225, b: 175 }, // lighter mint
+        { r: 80, g: 180, b: 140 }, // pine green
+        { r: 15, g: 120, b: 90 }, // deep pine
+        { r: 100, g: 230, b: 190 }, // pale mint glow
+      ];
+
+      function randomColor() {
+        return COLORS[Math.floor(Math.random() * COLORS.length)];
+      }
+
+      // === TRAIL PARTICLE (emitted from cursor) ===
+      class TrailParticle {
+        constructor(x, y, vx, vy) {
+          const col = randomColor();
+          this.r = col.r;
+          this.g = col.g;
+          this.b = col.b;
+          this.x = x + (Math.random() - 0.5) * 8;
+          this.y = y + (Math.random() - 0.5) * 8;
+
+          // Velocity inherits some of cursor momentum + random spread
+          const speed = Math.sqrt(vx * vx + vy * vy);
+          const spread = Math.min(speed * 0.5, 3);
+          const angle = Math.atan2(vy, vx) + (Math.random() - 0.5) * 2.0;
+          const mag = Math.random() * spread + 0.3;
+
+          this.vx = Math.cos(angle) * mag;
+          this.vy = Math.sin(angle) * mag;
+
+          this.maxLife = 80 + Math.random() * 60;
+          this.life = this.maxLife;
+          this.maxSize = Math.random() * 3.5 + 1;
+          this.size = 0;
+          this.friction = 0.975;
+          this.gravity = 0.008 + Math.random() * 0.008;
+        }
+
+        update() {
+          this.life--;
+          this.vx *= this.friction;
+          this.vy *= this.friction;
+          this.vy += this.gravity; // gentle downward drift (like falling leaves)
+
+          // Subtle organic sway
+          this.vx += Math.sin(this.life * 0.05) * 0.02;
+
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Size: grow in quickly, shrink out slowly
+          const lifeRatio = this.life / this.maxLife;
+          if (lifeRatio > 0.85) {
+            // Fade in
+            this.size = this.maxSize * ((1 - lifeRatio) / 0.15);
+          } else {
+            // Slow shrink
+            this.size = this.maxSize * (lifeRatio / 0.85);
+          }
+        }
+
+        draw() {
+          const alpha = Math.max(0, this.life / this.maxLife);
+
+          // Outer glow halo
+          const glowRadius = this.size * 4;
+          const glow = ctx.createRadialGradient(
+            this.x,
+            this.y,
+            0,
+            this.x,
+            this.y,
+            glowRadius,
+          );
+          glow.addColorStop(
+            0,
+            `rgba(${this.r}, ${this.g}, ${this.b}, ${alpha * 0.25})`,
+          );
+          glow.addColorStop(
+            0.4,
+            `rgba(${this.r}, ${this.g}, ${this.b}, ${alpha * 0.06})`,
+          );
+          glow.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, glowRadius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Core bright dot
+          const core = ctx.createRadialGradient(
+            this.x,
+            this.y,
+            0,
+            this.x,
+            this.y,
+            this.size,
+          );
+          core.addColorStop(
+            0,
+            `rgba(${Math.min(this.r + 80, 255)}, ${Math.min(this.g + 50, 255)}, ${Math.min(this.b + 50, 255)}, ${alpha * 0.95})`,
+          );
+          core.addColorStop(
+            0.6,
+            `rgba(${this.r}, ${this.g}, ${this.b}, ${alpha * 0.6})`,
+          );
+          core.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+          ctx.fillStyle = core;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        isDead() {
+          return this.life <= 0 || this.size < 0.1;
+        }
+      }
+
+      // === AMBIENT PARTICLE (floating background) ===
+      class AmbientParticle {
+        constructor() {
+          this.reset();
+        }
+
+        reset() {
+          const col = randomColor();
+          this.r = col.r;
+          this.g = col.g;
+          this.b = col.b;
+          this.x = Math.random() * w;
+          this.y = Math.random() * h;
+          this.size = Math.random() * 2 + 0.5;
+          this.baseSize = this.size;
+          this.vx = (Math.random() - 0.5) * 0.3;
+          this.vy = (Math.random() - 0.5) * 0.3;
+          this.alpha = Math.random() * 0.4 + 0.1;
+          this.baseAlpha = this.alpha;
+          this.pulseSpeed = Math.random() * 0.02 + 0.005;
+          this.pulseOffset = Math.random() * Math.PI * 2;
+          this.driftAngle = Math.random() * Math.PI * 2;
+          this.driftSpeed = Math.random() * 0.0005 + 0.0002;
+        }
+
+        update(time) {
+          // Organic floating drift
+          this.driftAngle += this.driftSpeed;
+          this.x += this.vx + Math.sin(this.driftAngle) * 0.15;
+          this.y += this.vy + Math.cos(this.driftAngle * 0.7) * 0.1;
+
+          // Pulse glow
+          const pulse = Math.sin(time * this.pulseSpeed + this.pulseOffset);
+          this.alpha = this.baseAlpha + pulse * 0.1;
+          this.size = this.baseSize + pulse * 0.3;
+
+          // Cursor attraction — particles gently gravitate toward cursor
+          if (mouse.active && mouse.x !== undefined) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < mouse.radius) {
+              const force = (1 - dist / mouse.radius) * 0.6;
+              this.vx += (dx / dist) * force * 0.08;
+              this.vy += (dy / dist) * force * 0.08;
+
+              // Brighten near cursor
+              this.alpha = Math.min(this.baseAlpha + force * 0.5, 0.9);
+              this.size = this.baseSize + force * 2.5;
+            }
+          }
+
+          // Gentle velocity damping
+          this.vx *= 0.995;
+          this.vy *= 0.995;
+
+          // Wrap around edges
+          if (this.x < -20) this.x = w + 20;
+          if (this.x > w + 20) this.x = -20;
+          if (this.y < -20) this.y = h + 20;
+          if (this.y > h + 20) this.y = -20;
+        }
+
+        draw() {
+          // Soft glow
+          const glowR = this.size * 5;
+          const glow = ctx.createRadialGradient(
+            this.x,
+            this.y,
+            0,
+            this.x,
+            this.y,
+            glowR,
+          );
+          glow.addColorStop(
+            0,
+            `rgba(${this.r}, ${this.g}, ${this.b}, ${this.alpha * 0.3})`,
+          );
+          glow.addColorStop(
+            0.5,
+            `rgba(${this.r}, ${this.g}, ${this.b}, ${this.alpha * 0.05})`,
+          );
+          glow.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, glowR, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Core
+          ctx.fillStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.alpha})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // === Cursor glow ring ===
+      function drawCursorGlow() {
+        if (!mouse.active || mouse.x === undefined) return;
+
+        const speed = Math.sqrt(mouse.vx * mouse.vx + mouse.vy * mouse.vy);
+        const glowIntensity = Math.min(speed / 15, 1) * 0.15 + 0.05;
+        const glowSize = 80 + speed * 3;
+
+        const glow = ctx.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          glowSize,
+        );
+        glow.addColorStop(0, `rgba(29, 205, 159, ${glowIntensity})`);
+        glow.addColorStop(0.3, `rgba(29, 205, 159, ${glowIntensity * 0.3})`);
+        glow.addColorStop(0.6, `rgba(22, 153, 119, ${glowIntensity * 0.1})`);
+        glow.addColorStop(1, "rgba(22, 153, 119, 0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, glowSize, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // === Connect nearby ambient particles with faint lines ===
+      function connectNearby() {
+        const maxDist = 120;
+        for (let i = 0; i < ambientParticles.length; i++) {
+          for (let j = i + 1; j < ambientParticles.length; j++) {
+            const dx = ambientParticles[i].x - ambientParticles[j].x;
+            const dy = ambientParticles[i].y - ambientParticles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < maxDist) {
+              const opacity = (1 - dist / maxDist) * 0.12;
+              const avgR = (ambientParticles[i].r + ambientParticles[j].r) / 2;
+              const avgG = (ambientParticles[i].g + ambientParticles[j].g) / 2;
+              const avgB = (ambientParticles[i].b + ambientParticles[j].b) / 2;
+              ctx.strokeStyle = `rgba(${avgR}, ${avgG}, ${avgB}, ${opacity})`;
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(ambientParticles[i].x, ambientParticles[i].y);
+              ctx.lineTo(ambientParticles[j].x, ambientParticles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // === Mouse event handlers ===
+      heroSection.addEventListener("mousemove", function (event) {
+        const rect = canvas.getBoundingClientRect();
+        const newX = event.clientX - rect.left;
+        const newY = event.clientY - rect.top;
+
+        if (mouse.prevX !== undefined) {
+          mouse.vx = newX - mouse.prevX;
+          mouse.vy = newY - mouse.prevY;
+        }
+
+        mouse.prevX = mouse.x;
+        mouse.prevY = mouse.y;
+        mouse.x = newX;
+        mouse.y = newY;
+        mouse.active = true;
+
+        // Emit trail particles based on cursor speed
+        const speed = Math.sqrt(mouse.vx * mouse.vx + mouse.vy * mouse.vy);
+        const emitCount = Math.min(Math.floor(speed * 0.6) + 1, 8);
+
+        for (let i = 0; i < emitCount; i++) {
+          if (trailParticles.length < 500) {
+            trailParticles.push(
+              new TrailParticle(mouse.x, mouse.y, mouse.vx, mouse.vy),
+            );
+          }
+        }
+
+        // Move background blobs for parallax
+        const blob1 = document.getElementById("blob1");
+        const blob2 = document.getElementById("blob2");
+        if (blob1 && blob2) {
+          const xOff = (mouse.x / w - 0.5) * 50;
+          const yOff = (mouse.y / h - 0.5) * 50;
+          blob1.style.transform = `translate(${xOff}px, ${yOff}px)`;
+          blob2.style.transform = `translate(${-xOff}px, ${-yOff}px)`;
+        }
+      });
+
+      heroSection.addEventListener("mouseleave", function () {
+        mouse.active = false;
+        mouse.x = undefined;
+        mouse.y = undefined;
+        mouse.prevX = undefined;
+        mouse.prevY = undefined;
+        mouse.vx = 0;
+        mouse.vy = 0;
+
+        const blob1 = document.getElementById("blob1");
+        const blob2 = document.getElementById("blob2");
+        if (blob1 && blob2) {
+          blob1.style.transform = `translate(0px, 0px)`;
+          blob2.style.transform = `translate(0px, 0px)`;
+        }
+      });
+
+      // === Init ===
+      function initCanvas() {
+        w = canvas.width = heroSection.offsetWidth;
+        h = canvas.height = heroSection.offsetHeight;
+
+        // Create ambient floating particles
+        ambientParticles = [];
+        const ambientCount = Math.min(Math.floor((w * h) / 18000), 120);
+        for (let i = 0; i < ambientCount; i++) {
+          ambientParticles.push(new AmbientParticle());
+        }
+
+        trailParticles = [];
+      }
+
+      // === Main animation loop ===
+      let time = 0;
+      function animate() {
+        time++;
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw cursor glow
+        drawCursorGlow();
+
+        // Update & draw ambient particles
+        for (let i = 0; i < ambientParticles.length; i++) {
+          ambientParticles[i].update(time);
+          ambientParticles[i].draw();
+        }
+
+        // Connect nearby ambient particles
+        connectNearby();
+
+        // Update & draw trail particles
+        for (let i = trailParticles.length - 1; i >= 0; i--) {
+          trailParticles[i].update();
+          trailParticles[i].draw();
+
+          if (trailParticles[i].isDead()) {
+            trailParticles.splice(i, 1);
+          }
+        }
+
+        animFrameId = requestAnimationFrame(animate);
+      }
+
+      window.addEventListener("resize", () => {
+        initCanvas();
+      });
+
+      // Start
+      initCanvas();
+      animate();
+    </script>
+  </body>
+</html>
